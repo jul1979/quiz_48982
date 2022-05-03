@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security" lang="en" layout:decorate="~{layout}">
+<head>
+    <meta charset="UTF-8">
+    <title>Liste des Questions</title>
+</head>
+<body>
+<main>
+
+<div class="col-md-6" layout:fragment="topleft">
+    <table class="table table-hover">
+        <caption></caption>
+        <thead>
+        <tr>
+            <th scope="col" th:text="#{numero}">NUMBER</th>
+            <th scope="col" th:text="#{text}">TEXT</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr class="table-active table-info" th:each="question:${questions}">
+            <td>
+               <a th:href="@{'/questions/'+${question.number}}" th:text="${question.number}"> </a>
+            </td>
+            <td>
+            <a th:href="@{'/questions/'+ ${question.number}}" th:text="${question.text}"></a>
+            </td>
+        </tr>
+
+        </tbody>
+    </table>
+</div>
+
+</main>
+</body>
+</html>
