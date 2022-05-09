@@ -13,14 +13,12 @@ public class AnswerService {
     @Autowired
     private AnswerRepository answerRepository;
 
-    public List<Answer> getAllAnswers(){
-        return  answerRepository.findAll();
-    }
-    public void saveAnswer(Answer answer){
-         answerRepository.save(answer);
+    public List<Answer> getAllAnswers() {
+        return answerRepository.findAll();
     }
 
-
-
+    public void saveAnswer(Answer answer) {
+        answerRepository.save(answer);
+    }
 
 }
