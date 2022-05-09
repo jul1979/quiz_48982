@@ -32,7 +32,7 @@ public class Answer {
 
 
     @ManyToOne(cascade = CascadeType.ALL,fetch = FetchType.LAZY)
-    @JoinColumn(name = "question_number",nullable = false )
+    @JoinColumn(name = "question_number",nullable = false)
     @JsonBackReference
     @ToString.Exclude
     private Question question;

@@ -5,7 +5,6 @@ import heb.webg5.quiz.repository.AnswerRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.time.LocalDate;
 import java.util.List;
 
 @Service
@@ -21,9 +20,6 @@ public class AnswerService {
          answerRepository.save(answer);
     }
 
-    public void insertAnswer( Long question_number,boolean agree, LocalDate date_added){
-        answerRepository.insertAnswer(question_number,agree,date_added);
-    }
 
 
 
