@@ -28,6 +28,8 @@ public class Answer {
     //@NotNull( message = "ne peut être null")
     @DateTimeFormat(iso = DateTimeFormat.ISO.DATE)
     @JsonFormat(pattern="yyyy-MM-dd")
+    //@DateTimeFormat(pattern = "yyyy-MM-dd")
+    //@NotNull(message = "Please provide a date.")
     private LocalDate dateAdded;
 
 

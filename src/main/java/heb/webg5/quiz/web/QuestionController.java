@@ -36,7 +36,7 @@ public class QuestionController {
          Answer answer = new Answer();
          model.addAttribute("answer",answer);
         Question question = questionService.getQuestionById(id);
-        List<Answer> answers = question.getAnswers();
+        //List<Answer> answers = question.getAnswers();
          model.addAttribute("question",question);
          return "detail";
     }
@@ -45,13 +45,15 @@ public class QuestionController {
     public String register(@PathVariable(name = "question_number") Long question_number,
                            @Valid @ModelAttribute(name="answer") Answer answer,
                            Errors errors, Model model){
-        //Webg5g48982quizzApplication.log.info("Date:"+ now);
-        // DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+
         answer.setDateAdded(LocalDate.now());
         answer.setQuestion(questionService.getQuestionById(question_number));
         if (errors.hasErrors()) {
-            model.addAttribute("questions",questionService.getAllQuestions());
-            return "redirect:/";
+            //model.addAttribute("questions",questionService.getAllQuestions());
+            Question question = questionService.getQuestionById(question_number);
+            model.addAttribute("question",question);
+            //return "redirect:/";
+            return "detail";
         }
         Question questionToUpdate = questionService.getAllQuestions().stream()
                 .filter(question -> Objects.equals(question_number, question.getNumber()))

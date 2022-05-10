@@ -44,6 +44,8 @@
                 FALSE
             </label>
         </div>
+            <span th:errors="*{dateAdded}" class="text-danger errorMsg"></span>
+            <span th:errors="*{question.text}" class="text-danger errorMsg"></span>
 
 
                 <button class="btn btn-primary" type="submit" th:text="#{envoyer}">Envoyer</button>
