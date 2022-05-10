@@ -13,18 +13,25 @@
         <caption></caption>
         <thead>
         <tr>
-            <th scope="col" th:text="#{numero}">NUMBER</th>
-            <th scope="col" th:text="#{text}">TEXT</th>
+            <th scope="col" >Nom</th>
+            <th scope="col" >NbReponses</th>
+            <th scope="col" >NbOui</th>
+            <th scope="col" >NbNon</th>
+
         </tr>
         </thead>
         <tbody>
-        <tr class="table-active table-info" th:each="question:${questions}">
+        <tr class="table-active table-info" th:each="question:${questions}" >
             <td>
-               <a th:href="@{'/questions/'+${question.number}}" th:text="${question.number}"> </a>
+                <a th:href="@{'/questions/'+${question.number}}" th:text="${question.getName()}"> </a>
             </td>
             <td>
-            <a th:href="@{'/questions/'+ ${question.number}}" th:text="${question.text}"></a>
+            <a th:href="@{'/questions/'+ ${question.number}}" th:text="${question.getNbReponses()}"></a>
             </td>
+            <td th:text="${question.nbOui}">   </td>
+            <td th:text="${question.nbNon}">   </td>
+
+
         </tr>
 
         </tbody>

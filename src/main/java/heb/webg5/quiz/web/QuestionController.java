@@ -1,7 +1,7 @@
 package heb.webg5.quiz.web;
 
-import heb.webg5.quiz.business.AnswerService;
 import heb.webg5.quiz.business.QuestionService;
+import heb.webg5.quiz.dto.SurveyDto;
 import heb.webg5.quiz.model.Answer;
 import heb.webg5.quiz.model.Question;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,7 +15,6 @@ import org.springframework.web.bind.annotation.PostMapping;
 
 import javax.validation.Valid;
 import java.time.LocalDate;
-import java.util.Collection;
 import java.util.List;
 import java.util.Objects;
 
@@ -24,12 +23,11 @@ public class QuestionController {
 
     @Autowired
     private QuestionService questionService;
-    @Autowired
-    private AnswerService answerService;
+
     @GetMapping("/")
     public String questions(Model model){
-         List<Question> allQuestions = questionService.getAllQuestions();
-         model.addAttribute("questions",allQuestions);
+         List<SurveyDto> questionsInfo = questionService.getQuestionsInfo();
+        model.addAttribute("questions",questionsInfo);
          return "questions";
     }
 
@@ -37,13 +35,9 @@ public class QuestionController {
     public String detail(@PathVariable(name ="id") Long id, Model model){
          Answer answer = new Answer();
          model.addAttribute("answer",answer);
-        Question question = questionService.questionDetail(id);
-         String text = question.getText();
-         Collection<Answer> answers = question.getAnswers();
-         model.addAttribute("text",text);
-         model.addAttribute("answers",answers);
-         model.addAttribute("localDate", LocalDate.now());
-         model.addAttribute("question_number",id);
+        Question question = questionService.getQuestionById(id);
+        List<Answer> answers = question.getAnswers();
+         model.addAttribute("question",question);
          return "detail";
     }
 
@@ -67,7 +61,4 @@ public class QuestionController {
         questionService.update(questionToUpdate);
         return "redirect:/questions/{question_number}";
     }
-
-
-
 }

@@ -9,8 +9,8 @@
 <main>
 
     <div class="col-md-6" layout:fragment="topleft">
-        <p th:text="${text}"></p>
-        <table class="table table-hover" th:if="${not #lists.isEmpty(answers)}">
+        <p th:text="${question.text}"></p>
+        <table class="table table-hover" th:if="${not #lists.isEmpty(question.answers)}">
             <caption></caption>
             <thead>
             <tr>
@@ -19,14 +19,14 @@
             </tr>
             </thead>
             <tbody>
-            <tr class="table-active table-info" th:each="answer:${answers}">
+            <tr class="table-active table-info" th:each="answer:${question.answers}">
                 <td th:text="${answer.dateAdded}"></td>
                 <td th:text="${answer.agree}"></td>
             </tr>
 
             </tbody>
         </table>
-        <p th:if="${#lists.isEmpty(answers)}" class="text-danger">Aucune reponse pour cette question</p>
+        <p th:if="${#lists.isEmpty(question.answers)}" class="text-danger">Aucune reponse pour cette question</p>
         <a th:href="@{/}">  <button type="button" class="btn btn-success" th:text="#{listedesquestions}"> List of questions</button> </a>
 
     </div>
